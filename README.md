@@ -16,5 +16,5 @@ C/C++ implementation of gaussian process regression sovler with OpenMP directive
 
 * OS: CentOS 6.10
 * Compiler: Interl icc
-* Batch system: IBM LSF(https://www.ibm.com/support/knowledgecenter/SSWRJV_10.1.0/lsf_users_guide/chap_lsf_about.html)
+* Batch system: IBM [LSF](https://www.ibm.com/support/knowledgecenter/SSWRJV_10.1.0/lsf_users_guide/chap_lsf_about.html)
 
