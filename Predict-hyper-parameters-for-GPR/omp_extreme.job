@@ -1,0 +1,31 @@
+#BSUB -n 20 -R 'select[nxt] rusage[mem=500] span[ptile=20]' -M 500
+#BSUB -J omp_gpr -o omp_output.%J -L /bin/bash -W 0:300
+##
+##NECESSARY JOB SPECIFICATIONS
+##BSUB -J JobName             # Set the job name to "JobName"
+##BSUB -L /bin/bash           # Uses the bash login shell to initialize the job's execution environment.
+##BSUB -W hh:mm               # Sets job's runtime wall-clock limit in hours:minutes or just minutes (-mm)
+##BSUB -n NNN                 # NNN: total number of cores/jobslots to allocate for the job
+##BSUB -R "select[node-type]" # Select node-type: nxt, mem256gb, gpu, phi, mem1t, mem2t ...
+##BSUB -R "span[ptile=XX]"    # XX:  number of cores/jobslots per node to use. Also, a node selection criterion.
+##BSUB -R "rusage[mem=nnn]"   # Reserves nnn MBs per process/CPU for the job
+##BSUB -M mm                  # Sets the per process enforceable memory limit to nnn MB
+##BSUB -o OUTPUTFILE.%J       # Send stdout and stderr to "OUTPUTFILE.[jobID]"
+#
+# <--- at this point the current working directory is the one you submitted the job from.
+#
+module load intel/2017A       # load Intel software stack 
+#
+
+
+
+## extreme test opt2
+
+OMP_NUM_THREADS=12 OMP_NESTED=TRUE OMP_PLACE=sockets ./GPR_omp_opt2 64 0.25 0.25 20
+OMP_NUM_THREADS=14 OMP_NESTED=TRUE OMP_PLACE=sockets ./GPR_omp_opt2 64 0.25 0.25 20
+OMP_NUM_THREADS=16 OMP_NESTED=TRUE OMP_PLACE=sockets ./GPR_omp_opt2 64 0.25 0.25 20
+OMP_NUM_THREADS=18 OMP_NESTED=TRUE OMP_PLACE=sockets ./GPR_omp_opt2 64 0.25 0.25 20
+OMP_NUM_THREADS=20 OMP_NESTED=TRUE OMP_PLACE=sockets ./GPR_omp_opt2 64 0.25 0.25 20
+
+#
+ls

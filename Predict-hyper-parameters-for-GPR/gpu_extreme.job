@@ -1,0 +1,30 @@
+#BSUB -n 20 -R 'select[gpu] rusage[mem=600] span[ptile=20]' -M 600
+#BSUB -J cuda_gpr -o cuda_output.%J -L /bin/bash -W 0:600
+##
+##NECESSARY JOB SPECIFICATIONS
+##BSUB -J JobName             # Set the job name to "JobName"
+##BSUB -L /bin/bash           # Uses the bash login shell to initialize the job's execution environment.
+##BSUB -W hh:mm               # Sets job's runtime wall-clock limit in hours:minutes or just minutes (-mm)
+##BSUB -n NNN                 # NNN: total number of cores/jobslots to allocate for the job
+##BSUB -R "select[node-type]" # Select node-type: nxt, mem256gb, gpu, phi, mem1t, mem2t ...
+##BSUB -R "span[ptile=XX]"    # XX:  number of cores/jobslots per node to use. Also, a node selection criterion.
+##BSUB -R "rusage[mem=nnn]"   # Reserves nnn MBs per process/CPU for the job
+##BSUB -M mm                  # Sets the per process enforceable memory limit to nnn MB
+##BSUB -o OUTPUTFILE.%J       # Send stdout and stderr to "OUTPUTFILE.[jobID]"
+#
+# <--- at this point the current working directory is the one you submitted the job from.
+#
+module load intel/2017A CUDA       # load Intel software stack 
+#
+
+
+## extreme test 
+./GPR_gpu 64 0.25 0.25 20 16
+./GPR_gpu 64 0.25 0.25 20 64
+./GPR_gpu 64 0.25 0.25 20 128
+./GPR_gpu 64 0.25 0.25 20 256
+./GPR_gpu 64 0.25 0.25 20 512
+./GPR_gpu 64 0.25 0.25 20 768
+
+#
+ls
