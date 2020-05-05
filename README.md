@@ -12,6 +12,18 @@ C/C++ imlementation of upper triangular matrix inversion with OpenMP directives 
 
 C/C++ implementation of gaussian process regression sovler with OpenMP directives to parallelize.
 
+## HW4 Hypercube Quicksort
+
+MPI impelementation of quicksort on Hypercube interconnect. 
+
+## HW5 Gaussian Process Regression acceleration using GPU
+
+CUDA implementation of gaussian process regression sovler.
+
+## Predict Hyper-parameters for GPR
+
+OpenMP(C/C++) and CUDA implementation of compute the hyper-parameters that can be used in the GPR model to predict values with high accuracy.
+
 ## Enviroment
 
 * OS: CentOS 6.10
